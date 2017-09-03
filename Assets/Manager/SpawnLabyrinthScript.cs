@@ -72,6 +72,7 @@ public class SpawnLabyrinthScript : MonoBehaviour {
 
                 obj.transform.SetParent(mazeManager.transform);
                 obj.isStatic = true;
+                obj.transform.GetChild(0).gameObject.isStatic = true;
             }
         }
         Debug.Log("Maze generated succesfully!");
