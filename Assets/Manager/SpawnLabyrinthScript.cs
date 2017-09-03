@@ -61,15 +61,23 @@ public class SpawnLabyrinthScript : MonoBehaviour {
         {
             for (int x = 0; x < _gridSize; x++)           
             {
+                //Chose set piece and set scale and position
                 GameObject obj = Instantiate(SetPieces[Random.Range(0, SetPieces.Length)]);
                 obj.transform.localScale = new Vector3(_scale,_scale,_scale);
                 obj.transform.position = new Vector3(x*SetPiceDimension*_scale,0,z*SetPiceDimension*_scale);
 
+                //Randomly mirror set pieces
+                if (Random.Range(0,2) == 1) { obj.transform.localScale = new Vector3(-obj.transform.localScale.x, obj.transform.localScale.y, obj.transform.localScale.z); }
+                if (Random.Range(0, 2) == 1) { obj.transform.localScale = new Vector3(obj.transform.localScale.x, obj.transform.localScale.y, -obj.transform.localScale.z); }
+
+
+                //Randomize rotation
                 Vector3 newRotaion = new Vector3();
                 int r = Random.Range(0, 4);
                 newRotaion.y = r * 90;
                 obj.transform.Rotate(newRotaion);
 
+                //Set some flags
                 obj.transform.SetParent(mazeManager.transform);
                 obj.isStatic = true;
                 obj.transform.GetChild(0).gameObject.isStatic = true;
