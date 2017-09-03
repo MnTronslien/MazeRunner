@@ -64,7 +64,14 @@ public class SpawnLabyrinthScript : MonoBehaviour {
                 GameObject obj = Instantiate(SetPieces[Random.Range(0, SetPieces.Length)]);
                 obj.transform.localScale = new Vector3(_scale,_scale,_scale);
                 obj.transform.position = new Vector3(x*SetPiceDimension*_scale,0,z*SetPiceDimension*_scale);
+
+                Vector3 newRotaion = new Vector3();
+                int r = Random.Range(0, 4);
+                newRotaion.y = r * 90;
+                obj.transform.Rotate(newRotaion);
+
                 obj.transform.SetParent(mazeManager.transform);
+                obj.isStatic = true;
             }
         }
         Debug.Log("Maze generated succesfully!");
